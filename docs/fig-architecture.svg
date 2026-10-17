@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="820" viewBox="0 0 1200 820" role="img" aria-labelledby="figtitle figdesc">
+<title id="figtitle">Trust zones and reachable services</title>
+<desc id="figdesc">Network and trust map: attacker LAN host, TV LAN surface, system webview, loopback services, and the device-wide config store.</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#0A111F"/><stop offset="1" stop-color="#0E1830"/>
+  </linearGradient>
+  <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+    <path d="M32 0H0V32" fill="none" stroke="#26344F" stroke-width="1" opacity=".33"/>
+  </pattern>
+  <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+    <feDropShadow dx="0" dy="10" stdDeviation="16" flood-color="#000" flood-opacity=".38"/>
+  </filter>
+  <marker id="ac" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#22D3EE"/></marker>
+  <marker id="ab" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#60A5FA"/></marker>
+  <marker id="ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#34D399"/></marker>
+  <marker id="aa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#FBBF24"/></marker>
+  <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#FB7185"/></marker>
+  <marker id="av" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#A78BFA"/></marker>
+  <marker id="am" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#93A4BE"/></marker>
+</defs>
+<rect width="1200" height="820" rx="18" fill="url(#bg)"/>
+<rect width="1200" height="820" rx="18" fill="url(#grid)"/>
+<rect x=".75" y=".75" width="1198.5" height="818.5" rx="17.25" fill="none" stroke="#26344F" stroke-width="1.5"/>
+<text x="60" y="56" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#22D3EE" font-weight="600" text-anchor="start" letter-spacing="2">FIGURE 2 / TRUST ZONES</text>
+<text x="60" y="96" font-family="Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="28" fill="#E6EDF7" font-weight="700" text-anchor="start">What is reachable, and from where</text>
+<text x="60" y="124" font-family="Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13.5" fill="#93A4BE" font-weight="400" text-anchor="start">LAN surface before the pivot · loopback services after it · one shared device-wide store</text>
+<rect x="40" y="155" width="260" height="560" rx="14" fill="#0C162A" stroke="#26344F" stroke-width="1.2" stroke-dasharray="1 0"/>
+<rect x="330" y="155" width="320" height="560" rx="14" fill="#0C182B" stroke="#26344F" stroke-width="1.2"/>
+<rect x="680" y="155" width="480" height="560" rx="14" fill="#120F22" stroke="#26344F" stroke-width="1.2"/>
+<text x="60" y="186" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.6" fill="#60A5FA" font-weight="600" text-anchor="start" letter-spacing="1.6">ATTACKER · LAN</text>
+<text x="60" y="205" font-family="Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="10.2" fill="#93A4BE" font-weight="400" text-anchor="start">authorized test host</text>
+<text x="350" y="186" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.6" fill="#22D3EE" font-weight="600" text-anchor="start" letter-spacing="1.6">TV · LAN SURFACE</text>
+<text x="350" y="205" font-family="Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="10.2" fill="#93A4BE" font-weight="400" text-anchor="start">reachable before the pivot</text>
+<text x="700" y="186" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.6" fill="#FB7185" font-weight="600" text-anchor="start" letter-spacing="1.6">TV · LOOPBACK</text>
+<text x="700" y="205" font-family="Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="10.2" fill="#93A4BE" font-weight="400" text-anchor="start">reachable only from the webview</text>
+<rect x="60" y="225" width="220" height="108" rx="12" fill="#101C33" stroke="#26344F" stroke-width="1.2"/>
+<text x="78" y="250" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.8" fill="#60A5FA" font-weight="600" text-anchor="start" letter-spacing="1.4">LAPTOP</text>
+<text x="78" y="277" font-family="Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14.5" fill="#E6EDF7" font-weight="600" text-anchor="start">attacker host</text>
+<text x="78" y="301" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11.8" fill="#22D3EE" font-weight="400" text-anchor="start">HTTP :8099</text>
+<text x="78" y="320" font-family="Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="10.3" fill="#93A4BE" font-weight="400" text-anchor="start">page + beacons</text>
+<rect x="60" y="353" width="220" height="96" rx="12" fill="#101C33" stroke="#26344F" stroke-width="1.2"/>
+<text x="78" y="378" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.8" fill="#60A5FA" font-weight="600" text-anchor="start">PAIRING TOKEN</text>
+<text x="78" y="402" font-family="Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14.5" fill="#E6EDF7" font-weight="600" text-anchor="start">AUTH bearer</text>
+<text x="78" y="424" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.6" fill="#93A4BE" font-weight="400" text-anchor="start">until factory reset</text>
+<rect x="60" y="469" width="220" height="96" rx="12" fill="#101C33" stroke="#26344F" stroke-width="1.2"/>
+<text x="78" y="494" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.8" fill="#60A5FA" font-weight="600" text-anchor="start">LAUNCH CLIENT</text>
+<text x="78" y="518" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11.5" fill="#22D3EE" font-weight="400" text-anchor="start">PUT /app/launch</text>
+<text x="78" y="540" font-family="Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="10.3" fill="#93A4BE" font-weight="400" text-anchor="start">NS=4 · APP_ID=3001</text>
+<rect x="350" y="225" width="280" height="112" rx="12" fill="#0D1D31" stroke="#26344F" stroke-width="1.2"/>
+<text x="368" y="250" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12.5" fill="#22D3EE" font-weight="700" text-anchor="start">7345</text>
+<text x="368" y="274" font-family="Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="15" fill="#E6EDF7" font-weight="600" text-anchor="start">SCPL / HTTPS</text>
+<text x="368" y="296" font-family="Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="10.3" fill="#93A4BE" font-weight="400" text-anchor="start">pairing · launch · store read</text>
+<rect x="538" y="238" width="74" height="21" rx="11" fill="#22D3EE" stroke="#22D3EE" stroke-width="0.9" opacity="0.12"/>
+<text x="575.0" y="252.6" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" fill="#22D3EE" font-weight="600" text-anchor="middle">AUTH</text>
+<rect x="350" y="357" width="280" height="86" rx="12" fill="#0D1D31" stroke="#26344F" stroke-width="1.2"/>
+<text x="368" y="382" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12.5" fill="#FBBF24" font-weight="700" text-anchor="start">8009</text>
+<text x="368" y="404" font-family="Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14.5" fill="#E6EDF7" font-weight="600" text-anchor="start">castv2 / TLS</text>
+<text x="368" y="424" font-family="Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="10.3" fill="#93A4BE" font-weight="400" text-anchor="start">LAUNCH · no auth</text>
+<rect x="350" y="463" width="280" height="64" rx="12" fill="#0D1D31" stroke="#26344F" stroke-width="1.2"/>
+<text x="368" y="487" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11.8" fill="#FBBF24" font-weight="700" text-anchor="start">7000</text>
+<text x="408" y="487" font-family="Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13.5" fill="#E6EDF7" font-weight="500" text-anchor="start">AirPlay · HAP</text>
+<text x="368" y="506" font-family="Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="10" fill="#93A4BE" font-weight="400" text-anchor="start">pair-setup / pair-verify</text>
+<rect x="350" y="547" width="280" height="64" rx="12" fill="#0D1D31" stroke="#26344F" stroke-width="1.2"/>
+<text x="368" y="571" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11.8" fill="#FBBF24" font-weight="700" text-anchor="start">9080</text>
+<text x="408" y="571" font-family="Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13.5" fill="#E6EDF7" font-weight="500" text-anchor="start">Netflix NRDP</text>
+<text x="368" y="590" font-family="Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="10" fill="#93A4BE" font-weight="400" text-anchor="start">status=ok for most inputs</text>
+<text x="350" y="642" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#64748B" font-weight="400" text-anchor="start">8008 · 8443 · 56789/90</text>
+<rect x="700" y="225" width="440" height="112" rx="12" fill="#1A1430" stroke="#FB7185" stroke-width="1.4"/>
+<text x="720" y="250" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.8" fill="#FB7185" font-weight="600" text-anchor="start" letter-spacing="1.3">SYSTEM WEBVIEW · UML MODAL</text>
+<text x="720" y="276" font-family="Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14.5" fill="#E6EDF7" font-weight="600" text-anchor="start">Chromium 128 · Conjure 128.1.8</text>
+<text x="720" y="300" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.6" fill="#22D3EE" font-weight="400" text-anchor="start">MESSAGE = http://attacker/agent.html</text>
+<text x="720" y="320" font-family="Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="10.1" fill="#93A4BE" font-weight="400" text-anchor="start">own origin · system-webview lifecycle</text>
+<rect x="1058" y="240" width="64" height="21" rx="11" fill="#FB7185" stroke="#FB7185" stroke-width="0.9" opacity="0.12"/>
+<text x="1090.0" y="254.6" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" fill="#FB7185" font-weight="600" text-anchor="middle">RCE</text>
+<rect x="700" y="357" width="210" height="88" rx="12" fill="#101C33" stroke="#2B5B4A" stroke-width="1.2"/>
+<text x="716" y="381" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#34D399" font-weight="700" text-anchor="start">scfs</text>
+<text x="716" y="399" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.8" fill="#34D399" font-weight="500" text-anchor="start">:12345</text>
+<text x="716" y="420" font-family="Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="10.2" fill="#93A4BE" font-weight="400" text-anchor="start">static bundles</text>
+<rect x="820" y="368" width="74" height="21" rx="11" fill="#34D399" stroke="#34D399" stroke-width="0.9" opacity="0.12"/>
+<text x="857.0" y="382.6" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" fill="#34D399" font-weight="600" text-anchor="middle">ACAO *</text>
+<rect x="930" y="357" width="210" height="88" rx="12" fill="#101C33" stroke="#5C2A3B" stroke-width="1.2"/>
+<text x="946" y="381" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#FB7185" font-weight="700" text-anchor="start">SCPL REST</text>
+<text x="946" y="399" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.8" fill="#FB7185" font-weight="500" text-anchor="start">:7346</text>
+<text x="946" y="420" font-family="Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="10.2" fill="#93A4BE" font-weight="400" text-anchor="start">plaintext twin</text>
+<rect x="1032" y="368" width="96" height="21" rx="11" fill="#FB7185" stroke="#FB7185" stroke-width="0.9" opacity="0.12"/>
+<text x="1080.0" y="382.6" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.4" fill="#FB7185" font-weight="600" text-anchor="middle">TOKENLESS</text>
+<rect x="700" y="463" width="210" height="88" rx="12" fill="#101C33" stroke="#26344F" stroke-width="1.2"/>
+<text x="716" y="487" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#A78BFA" font-weight="700" text-anchor="start">LOKI</text>
+<text x="716" y="505" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.8" fill="#A78BFA" font-weight="500" text-anchor="start">:4242</text>
+<text x="716" y="526" font-family="Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="10" fill="#93A4BE" font-weight="400" text-anchor="start">ws · bundle / deeplink</text>
+<rect x="930" y="463" width="210" height="88" rx="12" fill="#101C33" stroke="#26344F" stroke-width="1.2"/>
+<text x="946" y="487" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#A78BFA" font-weight="700" text-anchor="start">SCPL WS</text>
+<text x="946" y="505" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.8" fill="#A78BFA" font-weight="500" text-anchor="start">:8005</text>
+<text x="946" y="526" font-family="Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="10" fill="#93A4BE" font-weight="400" text-anchor="start">?TOKEN=&lt;token&gt;</text>
+<rect x="700" y="567" width="440" height="98" rx="12" fill="#1E1A12" stroke="#FBBF24" stroke-width="1.4"/>
+<text x="720" y="593" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.8" fill="#FBBF24" font-weight="600" text-anchor="start" letter-spacing="1.4">CONFIG STORE</text>
+<text x="720" y="619" font-family="Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14.5" fill="#E6EDF7" font-weight="600" text-anchor="start">device-wide key/value state</text>
+<text x="720" y="641" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.2" fill="#FBBF24" font-weight="400" text-anchor="start">ApplicationFramework:*  ·  AppConfigs:*  ·  arbitrary keys</text>
+<text x="720" y="658" font-family="Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="9.9" fill="#93A4BE" font-weight="400" text-anchor="start">read later from LAN: PUT :7345/app/store/get with AUTH</text>
+<line x1="280" y1="279" x2="344" y2="279" stroke="#22D3EE" stroke-width="1.8" stroke-linecap="round" marker-end="url(#ac)"/>
+<rect x="260.0" y="258" width="106.0" height="18" rx="5" fill="#0A111F" stroke="none" stroke-width="0"/>
+<text x="313" y="269" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#22D3EE" font-weight="500" text-anchor="middle">1  pair / launch</text>
+<line x1="636" y1="279" x2="694" y2="279" stroke="#22D3EE" stroke-width="1.8" stroke-linecap="round" marker-end="url(#ac)"/>
+<rect x="629.0" y="258" width="70.0" height="18" rx="5" fill="#0A111F" stroke="none" stroke-width="0"/>
+<text x="664" y="269" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#22D3EE" font-weight="500" text-anchor="middle">2  MESSAGE</text>
+<polyline points="280,320 312,320 312,400 344,400" fill="none" stroke="#FBBF24" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#ac)" stroke-dasharray="5 4"/>
+<rect x="228.68" y="300.4" width="90.64" height="17.6" rx="5" fill="#0A111F" stroke="none" stroke-width="0"/>
+<text x="274" y="311" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.6" fill="#FBBF24" font-weight="500" text-anchor="end">3  cast LAUNCH</text>
+<line x1="760" y1="337" x2="760" y2="351" stroke="#34D399" stroke-width="1.8" stroke-linecap="round" marker-end="url(#ac)"/>
+<line x1="1035" y1="337" x2="1035" y2="351" stroke="#FB7185" stroke-width="1.8" stroke-linecap="round" marker-end="url(#ac)"/>
+<line x1="1035" y1="445" x2="1035" y2="561" stroke="#FB7185" stroke-width="1.8" stroke-linecap="round" marker-end="url(#ac)"/>
+<rect x="1001.84" y="495.2" width="92.32000000000001" height="17.8" rx="5" fill="#0A111F" stroke="none" stroke-width="0"/>
+<text x="1048" y="506" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.8" fill="#FB7185" font-weight="500" text-anchor="start">6  store write</text>
+<circle cx="60" cy="760" r="4" fill="#60A5FA" stroke="none" stroke-width="1"/>
+<text x="72" y="764" font-family="Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="10.5" fill="#93A4BE" font-weight="400" text-anchor="start">verified path</text>
+<circle cx="180" cy="760" r="4" fill="#22D3EE" stroke="none" stroke-width="1"/>
+<text x="192" y="764" font-family="Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="10.5" fill="#93A4BE" font-weight="400" text-anchor="start">API call</text>
+<circle cx="280" cy="760" r="4" fill="#FB7185" stroke="none" stroke-width="1"/>
+<text x="292" y="764" font-family="Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="10.5" fill="#93A4BE" font-weight="400" text-anchor="start">loopback / no auth</text>
+<circle cx="440" cy="760" r="4" fill="#FBBF24" stroke="none" stroke-width="1"/>
+<text x="452" y="764" font-family="Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="10.5" fill="#93A4BE" font-weight="400" text-anchor="start">no-auth cast</text>
+<text x="60" y="792" font-family="Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="10.2" fill="#64748B" font-weight="400" text-anchor="start">The external scan did not show 7346, 12345, 4242, 8005, 9090, or 9091; they are loopback-bound or mDNS-advertised.</text>
+<text x="1140" y="792" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#64748B" font-weight="500" text-anchor="end">FIG 2 / 4</text>
+</svg>

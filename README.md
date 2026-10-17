@@ -90,18 +90,11 @@ The chain was reproduced end-to-end three times. All primitives in the [capabili
 
 The chain:
 
-```mermaid
-flowchart LR
-    A["LAN attacker<br/>no session"] -->|"PUT /pairing/start<br/>PUT /pairing/pair + PIN"| B["Pairing token<br/>(persistent)"]
-    B -->|"PUT /app/launch<br/>NAME_SPACE=4, APP_ID=3001<br/>MESSAGE=attacker URL"| C["System modal webview<br/>loads attacker page"]
-    C -->|"JavaScript executes"| D["Loopback pivot"]
-    D -->|"GET :7346/app/get_auth_token<br/>no auth"| E["Internal SCPL token<br/>TTL 5 min"]
-    D -->|"GET :12345/scfs/...<br/>ACAO: *"| F["System bundles +<br/>companion-lib.js"]
-    E -->|"PUT :7346/app/store/set"| G["Persistent config writes"]
-    E -->|"ws :8005/?TOKEN=..."| H["SCPL event bus"]
-    D -->|"ws :4242, subprotocol loki"| I["Bundle launch + deeplinks"]
-    F --> J["VIZIO bridge<br/>~200 native methods"]
-```
+<p align="center">
+  <img src="docs/fig-attack-chain.svg" alt="Six-stage attack chain: pairing token, arbitrary URL in the system webview, loopback map and native bridge, internal SCPL token, arbitrary config-store write, and optional LOKI/API-console control." width="100%">
+</p>
+
+<p align="center"><sub><b>Figure 1 — Verified chain.</b> Stages 1–5 were exercised end-to-end; stage 6 was verified interactively. The dashed line marks the transition from authenticated control-API access to unauthenticated loopback access.</sub></p>
 
 ---
 
@@ -146,6 +139,14 @@ Out of scope / not claimed:
 ---
 
 ## 4. System architecture and exposed interfaces
+
+Figure 2 maps the two reachable worlds: the LAN surface that answers before exploitation, and the loopback fleet that becomes reachable only after the webview pivot. The config store sits at the boundary between them.
+
+<p align="center">
+  <img src="docs/fig-architecture.svg" alt="Trust zone diagram: attacker LAN host, TV LAN services on 7345/8009/7000/9080, system webview, loopback services scfs 12345, SCPL REST 7346, LOKI 4242, SCPL WS 8005, and the device-wide config store." width="100%">
+</p>
+
+<p align="center"><sub><b>Figure 2 — Trust zones.</b> Solid arrows are observed API calls; the dashed arrow is the no-auth cast path. None of the loopback services appeared in the external scan.</sub></p>
 
 ### 4.1 LAN-reachable surface
 
@@ -818,6 +819,14 @@ Until a patch exists:
 
 ## 18. Reproduction and tooling
 
+Figure 3 shows the complete message sequence. Pairing is the only user interaction; the rest is automated once `/app/launch` returns success.
+
+<p align="center">
+  <img src="docs/fig-sequence.svg" alt="Sequence diagram: attacker, SCPL 7345, system webview, scfs 12345, SCPL REST 7346, and store; pairing, launch, page load, SDK fetch, token handout, store write, and later LAN store read." width="100%">
+</p>
+
+<p align="center"><sub><b>Figure 3 — Message sequence.</b> Solid arrows were observed on the wire. The final store read happens after the injected page is gone, which is the persistence proof.</sub></p>
+
 ### 18.1 Prerequisites
 
 - A TV you own, on a network you control.
@@ -955,7 +964,12 @@ App-specific details, controls, ad-blocking internals, playback modes, and secur
 │   └── README.md + SMOKE.md      architecture, operation, manual checks
 │
 ├── payloads/README.md            busybox not vendored (GPL); fetch your own
-├── docs/README.md                third-party SmartCast API reference links
+├── docs/
+│   ├── README.md                 third-party SmartCast API reference links
+│   ├── fig-attack-chain.svg      Figure 1: verified chain
+│   ├── fig-architecture.svg      Figure 2: trust zones
+│   ├── fig-sequence.svg          Figure 3: message sequence
+│   └── fig-ota-layout.svg        Figure 4: OTA container
 │
 ├── extracted/                    VIZIOS internals pulled off the device
 │   ├── companion-lib.js          VIZIO JS bridge/transport SDK, 299,679 B
@@ -1002,6 +1016,12 @@ offset 4+L   : AES-encrypted payload, chunked:
 ```
 
 Total on disk: 533,808,696 bytes. The 4-byte length plus the 7,348-byte JWT leaves 533,801,344 bytes of encrypted payload, consistent with 101 chunks of 5 MiB plus a remainder and per-chunk headers.
+
+<p align="center">
+  <img src="docs/fig-ota-layout.svg" alt="OTA container layout: 4-byte length, 7,348-byte RS512 JWT, 101 AES chunks with 32-byte headers, 4,267,232-byte tail, JWT claims, and the RSA key unwrap blocked on the device private key." width="100%">
+</p>
+
+<p align="center"><sub><b>Figure 4 — OTA container.</b> Schematic, not to scale. The signature chain and chunking are mapped; the AES key unwrap is the cryptographic stop line.</sub></p>
 
 ### A.2 JWT claims
 
