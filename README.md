@@ -9,6 +9,8 @@ Technical report and reproduction toolkit for the onn. 65" 4K (`65S4V4`, interna
 
 **Author:** [@vindeckyy](https://github.com/vindeckyy) · **Date:** October 2026 · **License:** MIT (code), see [LICENSE](LICENSE)
 
+**Legal notice:** Authorized research only. No warranty; no liability; no authorization to access devices you do not own. Using these techniques against third-party devices may be a crime. Read the full [Legal Disclaimer and Terms of Use](DISCLAIMER.md) before use.
+
 ---
 
 ## Abstract
@@ -59,6 +61,8 @@ The chain was reproduced end-to-end three times. All primitives in the [capabili
 21. [Appendix A: OTA firmware container format](#appendix-a-ota-firmware-container-format)
 22. [Appendix B: methodology, timeline, and open problems](#appendix-b-methodology-timeline-and-open-problems)
 23. [References](#references)
+24. [Scope and ethics](#scope-and-ethics)
+25. [Legal disclaimer](DISCLAIMER.md)
 
 ---
 
@@ -925,6 +929,7 @@ App-specific details, controls, ad-blocking internals, playback modes, and secur
 ├── SECURITY.md                   app-server security notes and escape hatches
 ├── CHANGELOG.md                  recent app work
 ├── LICENSE                       MIT
+├── DISCLAIMER.md                 legal disclaimer and terms of use
 ├── .github/workflows/tests.yml   CI: Python tests, JS syntax, compilation
 │
 ├── pwn.py                        end-to-end repro: pair/reuse token → launch →
@@ -1086,3 +1091,11 @@ No commercial tooling, no hardware implants, one patient TV.
 This research was performed against a TV owned by the author, on a private network, with no third-party traffic captured or retained. The toolkit can take over a TV on the same LAN. Do not run it against devices you do not own. `pwn.py` restores the home screen when it finishes; it does not persist a payload by default, and the store keys it writes are harmless markers that can be removed with `PUT /app/store/set`.
 
 If you are a vendor representative: open an issue and the full request/response transcripts, packet captures, and timeline can be provided for advisory coordination.
+
+---
+
+## Legal disclaimer
+
+This Repository is provided for authorized security research on devices you own or have explicit written permission to test. It is provided **"AS IS"**, without warranty of any kind, and the author disclaims liability to the maximum extent permitted by law. **Nothing in the Repository authorizes access to any device, network, account, or data.** Unauthorized access or interference may violate computer-misuse, privacy, wiretap, export-control, and other laws. You assume all risk, including device damage, data loss, warranty voiding, and legal exposure, and you agree to indemnify the author for claims arising from your use.
+
+This paragraph is a summary, not the complete terms. Read the full [Legal Disclaimer and Terms of Use](DISCLAIMER.md). If you do not agree, do not use the Repository.
