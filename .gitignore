@@ -1,0 +1,4 @@
+firmware/*.utv
+__pycache__/
+*.pyc
+nohup.out
