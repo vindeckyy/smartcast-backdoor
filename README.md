@@ -1,6 +1,9 @@
-# Arbitrary URL execution in the VIZIO OS system webview
+# Open RCE and arbitrary config write with persistence in VIZIO OS
 
-**From a SmartCast pairing token to loopback API compromise and persistent config-store control.**
+**SmartCast launcher → system-webview code execution → loopback API compromise → device-wide config control.**
+
+> **Impact:** open RCE in the VIZIO OS system webview, plus arbitrary config-store writes that persist device-wide.
+> The RCE path is LAN-reachable and needs no memory-corruption exploit. It is **not pre-auth**: `/app/launch` returns `403 REQUIRES_PAIRING` without a SmartCast pairing token (verified). Once paired, the loopback token endpoint is unauthenticated.
 
 Technical report and reproduction toolkit for the onn. 65" 4K (`65S4V4`, internal model `W4K65M-1030`) running VIZIO OS on a MediaTek MT5586.
 
@@ -10,7 +13,7 @@ Technical report and reproduction toolkit for the onn. 65" 4K (`65S4V4`, interna
 
 ## Abstract
 
-The SmartCast control API on TCP/7345 exposes `PUT /app/launch`. For the internal modal app (`NAME_SPACE=4`, `APP_ID=3001`, bundle `uml`), the `MESSAGE` field is passed through as the URL that the system UI webview loads. The build under test accepted a plain-HTTP URL on a non-loopback LAN host; no origin allowlist was observed. A caller holding a valid pairing token can therefore make the TV fetch and execute attacker-controlled JavaScript inside the same Chromium instance that renders system dialogs.
+The SmartCast control API on TCP/7345 exposes `PUT /app/launch`, an open RCE path into the system modal webview. For the internal modal app (`NAME_SPACE=4`, `APP_ID=3001`, bundle `uml`), the `MESSAGE` field is passed through as the URL that the system UI webview loads. The build under test accepted a plain-HTTP URL on a non-loopback LAN host; no origin allowlist was observed. A caller holding a valid pairing token can therefore make the TV fetch and execute attacker-controlled JavaScript inside the same Chromium instance that renders system dialogs.
 
 That JavaScript runs on a network origin that can reach loopback-only services. Three of those services turn the launch bug into a full device compromise:
 
@@ -20,10 +23,12 @@ That JavaScript runs on a network origin that can reach loopback-only services. 
 
 The chain was reproduced end-to-end three times. All primitives in the [capability matrix](#14-capability-matrix) were executed against the device; per-row notes give the limits.
 
-**Entry gate:** the `PUT /app/launch` call itself requires a valid SmartCast pairing token. That token is obtained through the documented pairing flow, which displays a four-digit PIN on the TV. This report separates the two facts:
+**Entry gate:** `PUT /app/launch` requires a valid SmartCast pairing token. Unauthenticated calls return `403` with `{"STATUS":{"RESULT":"REQUIRES_PAIRING"}}`. The token comes from the documented pairing flow, which displays a four-digit PIN on the TV. This report separates the two facts:
 
 - The pairing flow is **not** a vulnerability. It is the intended user-consent gate.
 - The vulnerability is that a token representing *user-level remote-control access* unlocks *system-level webview execution*, and that the resulting loopback context has no authentication of its own.
+
+"Open RCE" here means LAN-reachable and exploitable through the documented API alone, with no memory-corruption bug or chained second vulnerability. It does not mean unauthenticated.
 
 **Disclosure:** research was performed on a personally owned TV on a private network. No vendor contact had been made at the time of writing. Vizio or Walmart representatives can open an issue in this repository for the full request/response transcripts and an advisory coordination.
 
@@ -71,6 +76,13 @@ The chain was reproduced end-to-end three times. All primitives in the [capabili
 | — | Cast receiver on TCP/8009 accepts unauthenticated `LAUNCH` | Protocol design, but relevant to display-takeover scenarios | Per session |
 
 \* Persistence across app/webview lifecycle was verified. Reboot persistence was not explicitly re-tested for store values; the store is device-wide KV state, not app-scoped storage. The pairing token is known to survive reboots and remains valid until factory reset.
+
+**Impact classes**
+
+| Class | Result | Precondition |
+|---|---|---|
+| **Open RCE** | Attacker JavaScript runs in the system webview; loopback API, native bridge, store, LOKI, and the API console become reachable | pairing token |
+| **Arbitrary config write with persistence** | Any key, any namespace, no schema; survives the page and app that wrote it; readable from the LAN | RCE + internal token |
 
 The chain:
 
@@ -123,7 +135,7 @@ The full chain requires all of the following:
 
 Out of scope / not claimed:
 
-- No pre-auth RCE on current firmware. The 2021 `/install` command-injection path is dead on this build (see [§13](#13-additional-exposed-services-and-control-api-behavior)).
+- No pre-auth RCE on current firmware. The open RCE in this report is pairing-token gated. The 2021 `/install` command-injection path is dead on this build (see [§13](#13-additional-exposed-services-and-control-api-behavior)).
 - No kernel or bootloader exploit. The impact is code execution in the system UI webview plus control of device-wide configuration.
 - No cloud compromise. The OTA container was reverse-engineered but not decrypted; the device-side RSA private key was not extracted.
 
@@ -211,7 +223,7 @@ Response:
 
 The token remains valid across reboots until the device is factory-reset. It is a bearer credential with broad control-API access. The `CHALLENGE_TYPE` value used here is `1`; `RESPONSE_VALUE` is the on-screen PIN, not a hash.
 
-This flow is the intended consent mechanism. No bypass was found or needed. The relevant finding starts after it: the pairing token's capability is not scoped to remote-control actions, and the launch endpoint converts that capability into code execution in a system component.
+This flow is the intended consent mechanism. No bypass was found or needed. An unauthenticated `PUT /app/launch` returns `403 REQUIRES_PAIRING`; the gate is enforced on the endpoint used by the chain. The relevant finding starts after it: the pairing token's capability is not scoped to remote-control actions, and the launch endpoint converts that capability into code execution in a system component.
 
 ---
 
