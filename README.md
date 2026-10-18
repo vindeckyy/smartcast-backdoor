@@ -977,7 +977,7 @@ App-specific details, controls, ad-blocking internals, playback modes, and secur
 │   └── uml-bundle.js             the 3001 modal bundle, 18,173 B
 │
 ├── firmware/*.utv                official OTA image; format in Appendix A
-│                                 (too large for git; re-download from CDN)
+│                                 (not in git; see release firmware-86.920.9.3-2F)
 ├── run_tv.sh                     app lifecycle wrapper
 └── test.sh                       one-command verification
 ```
@@ -997,7 +997,7 @@ Use these to confirm that a locally pulled artifact matches the analyzed copy:
 | `extracted/uml-bundle.js` | 18,173 | `6e9fac2c686f493d` | `6e9fac2c686f493d99c7bc4a792515fdeaf309156ec66fad216022c59a31e35d` |
 | `firmware/mg1359-86.920.9.3-2F.utv` | 533,808,696 | `ea0b66768ee6ba8a` | `ea0b66768ee6ba8a4ca06e0aaf7a3b2722b2ec7fa0c92c35d1187443938cc0c7` |
 
-The fetched `apiTestApp.html` is 374,595 bytes as served; the 323,471-byte file is the extracted script. The firmware image is gitignored; hashes are provided for re-download verification.
+The fetched `apiTestApp.html` is 374,595 bytes as served; the 323,471-byte file is the extracted script. The firmware image is gitignored and archived as a release asset ([`firmware-86.920.9.3-2F`](https://github.com/vindeckyy/smartcast-backdoor/releases/tag/firmware-86.920.9.3-2F)); hashes are provided for verification.
 
 ---
 
