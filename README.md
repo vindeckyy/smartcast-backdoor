@@ -1097,6 +1097,16 @@ No commercial tooling, no hardware implants, one patient TV.
 
 ---
 
+## Related research
+
+Other disclosures from the same author, each with a full write-up and a working
+proof of concept:
+
+- **[TP-Link Archer AXE300 — authenticated command injection (root RCE)](https://github.com/vindeckyy/tp-link-archer-axe300-command-injection-rce)** — OS command injection in the ISP Speed Test of a consumer router: one authenticated request yields a root shell on the network gateway. Includes a standalone PoC and the device internals.
+- **[Apache Log4j — RCE via classpath resources Log4j trusts without asking](https://github.com/vindeckyy/log4j-classpath-plant-rce)** — A planted configuration resource is evaluated at start-up, so the attack lands before any request reaches the application.
+- **[Apache Log4j — RCE via configuration-time evaluation of untrusted Thread Context Map data](https://github.com/vindeckyy/log4j-config-time-lookup-rce)** — Lookup on attacker-controlled data executes code during configuration parsing, plus a second impact: secret disclosure with no special configuration needed.
+- **[Apache Log4j — log injection and record corruption](https://github.com/vindeckyy/log4j-log-injection)** — Three findings in the logging path itself: structured-data injection, 3.x attribute drift and JSON NaN, live-proven.
+
 ## References
 
 - exiva, `smartcast-api` — community SmartCast API reference (app IDs, menu CNAMEs, endpoint list): <https://github.com/exiva/smartcast-api>. Not vendored; see [`docs/README.md`](docs/README.md).
